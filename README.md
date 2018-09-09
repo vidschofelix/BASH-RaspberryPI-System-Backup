@@ -19,7 +19,7 @@ provide it as command line parameters.
 
 Example: ```sudo ./system_backup.sh /mnt/usbstick 7```
 
-This will put the backup in /mnt/usbstick and keep the backups for 7 days before cleaning them out.
+This will put the backup in /mnt/usbstick and keep the lat 7 backups before cleaning them out.
 
 ## Automate
 Once you have tested the script and are done with the settings you can automate this by adding it to 
