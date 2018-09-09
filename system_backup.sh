@@ -49,4 +49,4 @@ dd bs=1M if=/dev/mmcblk0 | pigz -c --fast -p 3 > ${backup_path}/$HOSTNAME.$(date
 rm /boot/forcefsck
 
 # Delete old backups
-ls -t ${backup_path}/$HOSTNAME.*.img.gz | tail -n +`expr ${files_to_keep}+1` | xargs rm --
+ls -t ${backup_path}/$HOSTNAME.*.img.gz | tail -n +`expr ${files_to_keep} + 1` | xargs rm --
