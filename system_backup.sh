@@ -2,12 +2,13 @@
 #
 # Automate Raspberry Pi Backups
 #
-# Kristofer Källsbo 2017 www.hackviking.com
+# Vidschofelix
+# Forked from Kristofer Källsbo 2017 www.hackviking.com
 #
 # Usage: system_backup.sh {path} {days of retention}
 #
 # Below you can set the default values if no command line args are sent.
-# The script will name the backup files {$HOSTNAME}.{YYYYmmdd}.img
+# The script will name the backup files {$HOSTNAME}.{YYYYmmddHHmm}.img.gz
 # When the script deletes backups older then the specified retention
 # it will only delete files with it's own $HOSTNAME.
 #
@@ -18,12 +19,12 @@ retention_days=3
 
 # Check that we are root!
 if [[ ! $(whoami) =~ "root" ]]; then
-echo ""
-echo "**********************************"
-echo "*** This needs to run as root! ***"
-echo "**********************************"
-echo ""
-exit
+    echo ""
+    echo "**********************************"
+    echo "*** This needs to run as root! ***"
+    echo "**********************************"
+    echo ""
+    exit
 fi
 
 # Check to see if we got command line args
@@ -39,10 +40,10 @@ fi
 touch /boot/forcefsck
 
 # Perform backup
-dd if=/dev/mmcblk0 of=$backup_path/$HOSTNAME.$(date +%Y%m%d).img bs=1M
+dd bs=1M if=/dev/mmcblk0 | pigz -c --fast -p 3 > ${backup_path}/$HOSTNAME.$(date +%Y%m%d%H%M).img.gz
 
 # Remove fsck trigger
 rm /boot/forcefsck
 
 # Delete old backups
-find $backup_path/$HOSTNAME.*.img -mtime +$retention_days -type f -delete 
+find ${backup_path}/$HOSTNAME.*.img.gz -mtime +${retention_days} -type f -delete
