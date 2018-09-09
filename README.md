@@ -25,7 +25,7 @@ This will put the backup in /mnt/usbstick and keep the lat 7 backups before clea
 Once you have tested the script and are done with the settings you can automate this by adding it to 
 cron.d. 
 
-```sudo echo "0 3 * * * root /home/pi/system_backup.sh" > /etc/cron.d/raspberry-backup```
+```sudo sh -c 'echo "0 3 * * * root /home/pi/system_backup.sh\n" > /etc/cron.d/raspberry-backup'```
 
 
 This will make the script take a full image backup every night at 3 am.
