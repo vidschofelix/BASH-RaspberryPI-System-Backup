@@ -39,6 +39,9 @@ fi
 # Create trigger to force file system consistency check if image is restored
 touch /boot/forcefsck
 
+#sync cache to drive
+sync; sync; sync
+
 # Perform backup
 dd bs=1M if=/dev/mmcblk0 | pigz -c --fast -p 3 > ${backup_path}/$HOSTNAME.$(date +%Y%m%d%H%M).img.gz
 

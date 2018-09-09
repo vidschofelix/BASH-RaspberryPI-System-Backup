@@ -1,14 +1,14 @@
 # BASH-RaspberryPI-System-Backup-Compressed
-Bash script for automatic compressed imaging backup of a raspberry pi system while it's running 
-It also cleans out the backups older then the set retention period in days.
+Bash script for automatic compressed imaging backup of a raspberry pi system while it's running. 
+It also cleans out the backups if more than a specified amount are present.
 You can have several Raspberry Pi's backup to the same location since it will only clean 
 it's own backups based on $HOSTNAME.
 
 ## Install
 ```
 cd ~
-wget https://raw.githubusercontent.com/vidschofelix/BASH-RaspberryPI-System-Backup-Compressed/master/system_backup.sh
 sudo apt-get install pigz
+wget https://raw.githubusercontent.com/vidschofelix/BASH-RaspberryPI-System-Backup-Compressed/master/system_backup.sh
 chmod +x system_backup.sh
 ```
 
